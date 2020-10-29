@@ -33,14 +33,23 @@ class Main
       System.out.println("File error: " + fileError.getStackTrace());
     }
 
-    int total = 0;
+    /*
+    Will print out each set (list) of numbers and the total for that set
+    Then calculate the full total of all numbers and print that
+     */
+    int allTotals = 0;
     for(List<Integer> nums : results) {
-      for (int num : nums) {
-        System.out.println("Number is : " + num);
-        total += num;
+
+      int total = 0;
+      for (int i=0; i<nums.size(); i++) {
+        System.out.printf("The %d number is %d. ",
+            i+1, nums.get(i));
+        total += nums.get(i);
       }
+      System.out.println("Total for this row is " + total);
+      allTotals += total;
     }
 
-    System.out.println("total is: " + total);
+    System.out.println("Everything totalled is: " + allTotals);
   }
 }
