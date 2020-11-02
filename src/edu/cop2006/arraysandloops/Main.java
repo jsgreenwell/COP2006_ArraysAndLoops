@@ -19,37 +19,18 @@ class Main
       String line; // holds current line
       int headers = 0;
       Map<String, String> sampleTests = new HashMap<>();
+      String[] keys = new String[0];
 
       while ((line = resultReader.readLine()) != null) {
         if (headers == 0) {
-          for (String field: line.split(",")) {
-            sampleTests.put(field, "");
-          }
+          // Note this will change the size because it will re-assign it completely
+          keys = line.split(",");
           headers++;
         } else {
           if (!line.startsWith("#")) {
             String[] field = line.split(",");
             for (int i=0; i<field.length;i++) {
-              switch (i) {
-                case 0:
-                  sampleTests.put("id", field[i]);
-                  break;
-                case 1:
-                  sampleTests.put("label", field[i]);
-                  break;
-                case 2:
-                  sampleTests.put("x", field[i]);
-                  break;
-                case 3:
-                  sampleTests.put("y", field[i]);
-                  break;
-                case 4:
-                  sampleTests.put("weight", field[i]);
-                  break;
-                case 5:
-                  sampleTests.put("cluster", field[i]);
-                  break;
-              }
+              sampleTests.put(keys[i], field[i]);
             }
             results.add(sampleTests);
           }
